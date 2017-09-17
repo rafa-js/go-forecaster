@@ -1,0 +1,12 @@
+{
+  "comment": "",
+  "ignore": "test",
+  "package": [],
+  "rootPath": "github.com/server-forecaster",
+  "heroku": {
+    "install": [
+      "./..."
+    ],
+    "goVersion": "go1.9"
+  }
+}
