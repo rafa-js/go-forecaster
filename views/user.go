@@ -6,13 +6,22 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/server-forecaster/model/manager"
 	"encoding/json"
+	"github.com/liip/sheriff"
 )
 
 func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 	parameters := mux.Vars(request)
 	user := manager.Create().GetUserByAlias(parameters["alias"])
-	json.NewEncoder(writer).Encode(user)
-	writer.WriteHeader(http.StatusAccepted)
+	o := &sheriff.Options{
+		Groups: []string{"visible"},
+	}
+	data, err := sheriff.Marshal(o, user)
+	if err != nil{
+		writer.WriteHeader(http.StatusInternalServerError)
+	} else {
+		json.NewEncoder(writer).Encode(data)
+		writer.WriteHeader(http.StatusAccepted)
+	}
 }
 
 func Insert(writer http.ResponseWriter, request *http.Request) {
