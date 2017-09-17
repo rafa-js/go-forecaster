@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
-	"./views"
+	"github.com/server-forecaster/views"
 )
 
 func main() {
