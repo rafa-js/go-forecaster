@@ -17,5 +17,5 @@ func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 
 func Insert(writer http.ResponseWriter, request *http.Request) {
 	writer.WriteHeader(http.StatusCreated)
-	io.WriteString(writer, "SHUU!")
+	io.WriteString(writer, "ADDED!")
 }
