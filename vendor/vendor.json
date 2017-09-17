@@ -51,6 +51,18 @@
 			"revisionTime": "2017-09-14T23:13:19Z"
 		},
 		{
+			"checksumSHA1": "g/V4qrXjUGG9B+e3hB+4NAYJ5Gs=",
+			"path": "github.com/gorilla/context",
+			"revision": "08b5f424b9271eedf6f9f0ce86cb9396ed337a42",
+			"revisionTime": "2016-08-17T18:46:32Z"
+		},
+		{
+			"checksumSHA1": "+i76HB4vEOFz+vLYsUmThS6oeQI=",
+			"path": "github.com/gorilla/mux",
+			"revision": "24fca303ac6da784b9e8269f724ddeb0b2eea5e7",
+			"revisionTime": "2017-09-05T17:10:44Z"
+		},
+		{
 			"checksumSHA1": "DQzolwNgGJI8Ky8AsMKI8SCEIBk=",
 			"path": "github.com/heroku/x/hmetrics",
 			"revision": "0dad4c39389de60e5543777013871d6f13c13aa0",
