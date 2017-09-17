@@ -19,10 +19,10 @@ func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
-		a, _ := json.MarshalIndent(data, "", "  ")
+		encodedData, _ := json.Marshal(data)
 		//json.NewEncoder(writer).Encode(data)
 		writer.WriteHeader(http.StatusAccepted)
-		writer.Write(a)
+		writer.Write(encodedData)
 	}
 }
 
