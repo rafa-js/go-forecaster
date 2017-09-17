@@ -11,7 +11,7 @@ func GetTests() []tests.TestParameters {
 		{
 			Handler:            views.GetByAlias,
 			Description:        "Get a not existent user",
-			Url:                "api/users/123456",
+			Url:                "api/users/notExistent",
 			Method:             http.MethodGet,
 			RequestBody:        ``,
 			QueryParameters:    make(map[string]string),
@@ -21,7 +21,7 @@ func GetTests() []tests.TestParameters {
 		{
 			Handler:            views.GetByAlias,
 			Description:        "Get an user with ID = 1",
-			Url:                "api/users/1",
+			Url:                "api/users/alias",
 			Method:             http.MethodGet,
 			RequestBody:        ``,
 			QueryParameters:    make(map[string]string),
