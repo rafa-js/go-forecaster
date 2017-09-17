@@ -1,0 +1,14 @@
+{
+  "name": "Forecast Server",
+  "description": "Forecast Server for a friends!",
+  "keywords": [
+    "go",
+    "forecast",
+    "api",
+    "rest"
+  ],
+  "image": "heroku/go:1.9",
+  "mount_dir": "src/github.com/server-forecaster",
+  "website": "http://github.com/heroku/go-getting-started",
+  "repository": "http://github.com/heroku/go-getting-started"
+}
