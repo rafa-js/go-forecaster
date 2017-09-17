@@ -22,8 +22,8 @@ func main() {
 	api := router.PathPrefix("/api").Subrouter()
 
 	userApi := api.PathPrefix("/users").Subrouter()
-	userApi.HandleFunc("/{id}", views.GetPendingForecasts).Methods("GET")
-	userApi.HandleFunc("", views.Insert).Methods("POST")
+	userApi.HandleFunc("/{id}", views.GetByAlias).Methods("GET")
+	userApi.HandleFunc("/", views.Insert).Methods("POST")
 
 	log.Panic(http.ListenAndServe(":"+port, router))
 }
