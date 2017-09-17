@@ -1,4 +1,4 @@
-package models
+package entity
 
 type ClassificationScore struct {
 	User      User       `json:"user" groups:"readable,visible"`

@@ -2,13 +2,12 @@ package views
 
 import (
 	"net/http"
-	"github.com/gin-gonic/gin"
 )
 
 type Person struct {
 }
 
-func GetPendingForecasts(context *gin.Context) {
-	context.Writer.WriteHeader(http.StatusAccepted)
-	context.Writer.WriteString("Shu!")
+func GetPendingForecasts(writer http.ResponseWriter, r *http.Request) {
+	writer.WriteHeader(http.StatusNotFound)
+	writer.Write([]byte("SHU!"))
 }

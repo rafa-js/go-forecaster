@@ -4,9 +4,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
 	"github.com/server-forecaster/views"
+	"github.com/gorilla/mux"
+	"log"
 )
 
 func main() {
@@ -17,13 +18,12 @@ func main() {
 		//log.Fatal("$PORT must be set")
 	}
 
-	router := gin.New()
-	router.Use(gin.Logger())
+	router := mux.NewRouter()
+	api := router.PathPrefix("/api").Subrouter()
 
-	router.GET("api/forecasts/pending", views.GetPendingForecasts)
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "SHU", nil)
-	})
+	userApi := api.PathPrefix("/users").Subrouter()
+	userApi.HandleFunc("/{id}", views.GetPendingForecasts).Methods("GET")
+	userApi.HandleFunc("", views.Insert).Methods("POST")
 
-	router.Run(":" + port)
+	log.Panic(http.ListenAndServe(":"+port, router))
 }
