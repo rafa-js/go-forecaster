@@ -63,6 +63,12 @@
 			"revisionTime": "2017-09-05T17:10:44Z"
 		},
 		{
+			"checksumSHA1": "tUGxc7rfX0cmhOOUDhMuAZ9rWsA=",
+			"path": "github.com/hashicorp/go-version",
+			"revision": "fc61389e27c71d120f87031ca8c88a3428f372dd",
+			"revisionTime": "2017-09-14T15:41:28Z"
+		},
+		{
 			"checksumSHA1": "DQzolwNgGJI8Ky8AsMKI8SCEIBk=",
 			"path": "github.com/heroku/x/hmetrics",
 			"revision": "0dad4c39389de60e5543777013871d6f13c13aa0",
@@ -91,6 +97,12 @@
 			"path": "github.com/json-iterator/go",
 			"revision": "6ed27152e0428abfde127acb33b08b03a1e67cac",
 			"revisionTime": "2017-09-17T08:07:42Z"
+		},
+		{
+			"checksumSHA1": "4hdCoF2DJ4RdQb1eODmKsWA9gfQ=",
+			"path": "github.com/liip/sheriff",
+			"revision": "2245bc633c6a1a5641988484b2565422f71f8ba6",
+			"revisionTime": "2017-08-25T11:51:38Z"
 		},
 		{
 			"checksumSHA1": "U6lX43KDDlNOn+Z0Yyww+ZzHfFo=",

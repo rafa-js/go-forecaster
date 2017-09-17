@@ -16,11 +16,13 @@ func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 		Groups: []string{"visible"},
 	}
 	data, err := sheriff.Marshal(o, user)
-	if err != nil{
+	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
-		json.NewEncoder(writer).Encode(data)
+		a, _ := json.MarshalIndent(data, "", "  ")
+		//json.NewEncoder(writer).Encode(data)
 		writer.WriteHeader(http.StatusAccepted)
+		writer.Write(a)
 	}
 }
 
