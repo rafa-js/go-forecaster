@@ -4,9 +4,10 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"github.com/server-forecaster/model/manager"
+	"github.com/server-forecaster/utils"
+	"github.com/server-forecaster/model/entity"
 	"encoding/json"
 	"github.com/liip/sheriff"
-	"github.com/server-forecaster/model/entity"
 )
 
 func GetByAlias(writer http.ResponseWriter, request *http.Request) {
@@ -38,6 +39,7 @@ func Insert(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
+		user.Password = utils.MD5(user.Password)
 		userManager := manager.Create()
 		if userManager.AddUser(&user) {
 			writer.WriteHeader(http.StatusCreated)
