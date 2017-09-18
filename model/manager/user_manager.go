@@ -19,7 +19,6 @@ type DefaultUserManager struct {
 }
 
 func (manager DefaultUserManager) AddUser(user *entity.User) bool {
-	manager.DB.Close()
 	manager.DB.Create(&user)
 	return manager.DB.NewRecord(user)
 }
