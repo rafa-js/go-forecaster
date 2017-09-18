@@ -31,7 +31,7 @@ func GetTests() []tests.TestParameters {
 		{
 			Handler:            views.Insert,
 			Description:        "Add a new user",
-			Url:                "api/users/1",
+			Url:                "api/users",
 			Method:             http.MethodPost,
 			RequestBody:        `{"alias":"userAlias", "password": "123", "email": "email@test.com"}`,
 			QueryParameters:    make(map[string]string),

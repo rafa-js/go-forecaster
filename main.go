@@ -14,8 +14,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		port = "8080"
-		//log.Fatal("$PORT must be set")
+		port = "80"
 	}
 
 	router := mux.NewRouter()
@@ -23,7 +22,7 @@ func main() {
 
 	userApi := api.PathPrefix("/users").Subrouter()
 	userApi.HandleFunc("/{alias}", views.GetByAlias).Methods("GET")
-	userApi.HandleFunc("/", views.Insert).Methods("POST")
+	userApi.HandleFunc("/you", views.Insert).Methods("POST")
 
 	log.Panic(http.ListenAndServe(":"+port, router))
 }

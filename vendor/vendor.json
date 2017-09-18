@@ -9,6 +9,10 @@
 	"ignore": "test",
 	"package": [
 		{
+			"path": "appengine/cloudsql",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "mrz/kicZiUaHxkyfvC/DyQcr8Do=",
 			"path": "github.com/davecgh/go-spew/spew",
 			"revision": "a476722483882dd40b8111f0eb64e1d7f43f56e4",
@@ -43,6 +47,12 @@
 			"path": "github.com/gin-gonic/gin/render",
 			"revision": "5afc5b19730118c9b8324fe9dd995d44ec65c81a",
 			"revisionTime": "2017-09-11T14:33:19Z"
+		},
+		{
+			"checksumSHA1": "MP9Xpe/3gZtmSgEyVWshhThZ4H0=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "be22b3051b3467094e9908389d900e74f72cf08f",
+			"revisionTime": "2017-09-17T20:13:19Z"
 		},
 		{
 			"checksumSHA1": "yqF125xVSkmfLpIVGrLlfE05IUk=",
@@ -83,6 +93,12 @@
 		{
 			"checksumSHA1": "eljaapCfm6h09IEjd97AM9Pdeuo=",
 			"path": "github.com/jinzhu/gorm",
+			"revision": "b1885a643b4977c9089d77eb07c0fd96591f94b8",
+			"revisionTime": "2017-09-04T14:39:19Z"
+		},
+		{
+			"checksumSHA1": "eECxSkwh0WmhLwaxHfkvcLOWS08=",
+			"path": "github.com/jinzhu/gorm/dialects/mysql",
 			"revision": "b1885a643b4977c9089d77eb07c0fd96591f94b8",
 			"revisionTime": "2017-09-04T14:39:19Z"
 		},

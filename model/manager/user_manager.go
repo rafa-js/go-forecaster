@@ -1,6 +1,10 @@
 package manager
 
-import "github.com/server-forecaster/model/entity"
+import (
+	"github.com/server-forecaster/model/entity"
+	"github.com/jinzhu/gorm"
+	"github.com/server-forecaster/model"
+)
 
 type UserManager interface {
 	AddUser(user *entity.User) bool
@@ -9,14 +13,16 @@ type UserManager interface {
 }
 
 type DefaultUserManager struct {
+	DB gorm.DB
 }
 
-func (mng DefaultUserManager) AddUser(user *entity.User) bool {
-	return true
+func (manager DefaultUserManager) AddUser(user *entity.User) bool {
+	manager.DB.Close()
+	manager.DB.Create(&user)
+	return manager.DB.NewRecord(user)
 }
 
-func (mng DefaultUserManager) GetUserByAlias(alias string) *entity.User {
-	print("The alias " + alias)
+func (manager DefaultUserManager) GetUserByAlias(alias string) *entity.User {
 	if alias == "notExistent" {
 		return nil
 	}
@@ -24,5 +30,6 @@ func (mng DefaultUserManager) GetUserByAlias(alias string) *entity.User {
 }
 
 func Create() UserManager {
-	return DefaultUserManager{}
+	db := model.GetDatabase()
+	return DefaultUserManager{DB: *db}
 }
