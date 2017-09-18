@@ -7,7 +7,7 @@ import (
 )
 
 type UserManager interface {
-	AddUser(user *entity.User) bool
+	AddUser(user entity.User) bool
 
 	GetUserByAlias(alias string) *entity.User
 
@@ -18,7 +18,7 @@ type DefaultUserManager struct {
 	DB gorm.DB
 }
 
-func (manager DefaultUserManager) AddUser(user *entity.User) bool {
+func (manager DefaultUserManager) AddUser(user entity.User) bool {
 	manager.DB.Create(&user)
 	return manager.DB.NewRecord(user)
 }
