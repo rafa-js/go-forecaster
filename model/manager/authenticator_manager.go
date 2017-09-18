@@ -19,7 +19,7 @@ func (manager AuthenticatorManager) Login(identifier string, password string) *e
 		return nil
 	} else {
 		user.AuthToken = utils.MD5(fmt.Sprint(time.Now()))
-		manager.DB.Update(user)
+		manager.DB.Save(user)
 		return &user
 	}
 }
