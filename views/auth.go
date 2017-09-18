@@ -9,6 +9,7 @@ import (
 )
 
 func Login(writer http.ResponseWriter, request *http.Request) {
+	request.ParseForm()
 	identifier := request.Form.Get("identifier")
 	password := request.Form.Get("password")
 	authManager := manager.CreateAuthenticatorManager()
