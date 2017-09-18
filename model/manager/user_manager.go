@@ -24,10 +24,9 @@ func (manager DefaultUserManager) AddUser(user *entity.User) bool {
 }
 
 func (manager DefaultUserManager) GetUserByAlias(alias string) *entity.User {
-	if alias == "notExistent" {
-		return nil
-	}
-	return &entity.User{Alias: "userAlias"}
+	user := entity.User{}
+	manager.DB.Where("Alias = ?", alias).First(&user)
+	return &user
 }
 
 func (manager DefaultUserManager) Close() {
