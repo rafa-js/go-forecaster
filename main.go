@@ -22,7 +22,7 @@ func main() {
 
 	userApi := api.PathPrefix("/users").Subrouter()
 	userApi.HandleFunc("/{alias}", views.GetByAlias).Methods("GET")
-	userApi.HandleFunc("/you", views.Insert).Methods("POST")
+	userApi.HandleFunc("", views.Insert).Methods("POST")
 
 	log.Panic(http.ListenAndServe(":"+port, router))
 }
