@@ -11,10 +11,9 @@ type AuthenticatorManager struct {
 
 func (manager AuthenticatorManager) Login(identifier string, password string) *entity.User {
 	user := entity.User{}
-	var count int
 	manager.DB.Where("(Email = ? OR Alias = ?) AND Password = ?",
-		identifier, utils.MD5(password)).Count(&count).First(&user)
-	if count == 0 {
+		identifier, utils.MD5(password)).FirstOrInit(&user, entity.User{Alias: "NULL"})
+	if user.Alias == "NULL" {
 		return nil
 	} else {
 		return &user
