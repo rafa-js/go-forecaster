@@ -3,6 +3,8 @@ package manager
 import (
 	"github.com/server-forecaster/utils"
 	"github.com/server-forecaster/model/entity"
+	"time"
+	"fmt"
 )
 
 type AuthenticatorManager struct {
@@ -16,6 +18,8 @@ func (manager AuthenticatorManager) Login(identifier string, password string) *e
 	if user.Alias == "" {
 		return nil
 	} else {
+		user.AuthToken = utils.MD5(fmt.Sprint(time.Now()))
+		manager.DB.Update(user)
 		return &user
 	}
 }
