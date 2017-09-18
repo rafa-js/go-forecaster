@@ -31,7 +31,7 @@ func (manager DefaultUserManager) GetUserByAlias(alias string) *entity.User {
 	return &entity.User{Alias: "userAlias"}
 }
 
-func (manager DefaultUserManager) Release() {
+func (manager DefaultUserManager) Close() {
 	manager.DB.Close()
 }
 
