@@ -24,5 +24,8 @@ func main() {
 	userApi.HandleFunc("/{alias}", views.GetByAlias).Methods("GET")
 	userApi.HandleFunc("", views.Insert).Methods("POST")
 
+	authApi := api.PathPrefix("/auth").Subrouter()
+	authApi.HandleFunc("/login", views.Login).Methods("POST")
+
 	log.Panic(http.ListenAndServe(":"+port, router))
 }

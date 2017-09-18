@@ -10,9 +10,11 @@ import (
 	"github.com/liip/sheriff"
 )
 
+
 func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 	parameters := mux.Vars(request)
-	userManager := manager.Create()
+	userManager := manager.CreateUserManager()
+	defer userManager.Close()
 	user := userManager.GetUserByAlias(parameters["alias"])
 	if user == nil {
 		writer.WriteHeader(http.StatusNotFound)
@@ -29,7 +31,6 @@ func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 			writer.Write(encodedData)
 		}
 	}
-	userManager.Close()
 }
 
 func Insert(writer http.ResponseWriter, request *http.Request) {
@@ -40,12 +41,12 @@ func Insert(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
 		user.Password = utils.MD5(user.Password)
-		userManager := manager.Create()
+		userManager := manager.CreateUserManager()
+		defer userManager.Close()
 		if userManager.AddUser(&user) {
 			writer.WriteHeader(http.StatusCreated)
 		} else {
 			writer.WriteHeader(http.StatusBadRequest)
 		}
-		userManager.Close()
 	}
 }
