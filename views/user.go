@@ -39,7 +39,7 @@ func Insert(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
 		userManager := manager.Create()
-		if userManager.AddUser(&user) {
+		if userManager.AddUser(user) {
 			writer.WriteHeader(http.StatusCreated)
 		} else {
 			writer.WriteHeader(http.StatusBadRequest)

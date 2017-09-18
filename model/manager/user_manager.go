@@ -20,7 +20,7 @@ type DefaultUserManager struct {
 
 func (manager DefaultUserManager) AddUser(user entity.User) bool {
 	manager.DB.Create(&user)
-	return manager.DB.NewRecord(user)
+	return !manager.DB.NewRecord(user)
 }
 
 func (manager DefaultUserManager) GetUserByAlias(alias string) *entity.User {
