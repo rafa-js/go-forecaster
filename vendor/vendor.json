@@ -103,6 +103,12 @@
 			"revisionTime": "2017-09-04T14:39:19Z"
 		},
 		{
+			"checksumSHA1": "4VZ1gLZHMumRjV3fclS1aX8S1aQ=",
+			"path": "github.com/jinzhu/gorm/dialects/sqlite",
+			"revision": "b1885a643b4977c9089d77eb07c0fd96591f94b8",
+			"revisionTime": "2017-09-04T14:39:19Z"
+		},
+		{
 			"checksumSHA1": "VIp1lZm6joWhlNdwhady8u//qRw=",
 			"path": "github.com/jinzhu/inflection",
 			"revision": "1c35d901db3da928c72a72d8458480cc9ade058f",
@@ -127,6 +133,12 @@
 			"revisionTime": "2017-03-22T23:44:13Z"
 		},
 		{
+			"checksumSHA1": "vJOfjdXbjymKpuay2nyRnGncJUw=",
+			"path": "github.com/mattn/go-sqlite3",
+			"revision": "05548ff55570cdb9ac72ff4a25a3b5e77a6fb7e5",
+			"revisionTime": "2017-09-01T08:40:05Z"
+		},
+		{
 			"checksumSHA1": "LuFv4/jlrmFNnDb/5SCSEPAM9vU=",
 			"path": "github.com/pmezard/go-difflib/difflib",
 			"revision": "792786c7400a136282c1664665ae0a8db921c6c2",
@@ -143,6 +155,12 @@
 			"path": "github.com/ugorji/go/codec",
 			"revision": "8c0409fcbb70099c748d71f714529204975f6c3f",
 			"revisionTime": "2017-08-26T15:59:43Z"
+		},
+		{
+			"checksumSHA1": "dr5+PfIRzXeN+l1VG+s0lea9qz8=",
+			"path": "golang.org/x/net/context",
+			"revision": "8351a756f30f1297fe94bbf4b767ec589c6ea6d0",
+			"revisionTime": "2017-09-15T01:39:56Z"
 		},
 		{
 			"checksumSHA1": "A+9lemYS6e/BXlyFTsm9CeK5dKU=",
