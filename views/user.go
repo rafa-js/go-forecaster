@@ -11,7 +11,8 @@ import (
 
 func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 	parameters := mux.Vars(request)
-	user := manager.Create().GetUserByAlias(parameters["alias"])
+	userManager := manager.Create()
+	user := userManager.GetUserByAlias(parameters["alias"])
 	if user == nil {
 		writer.WriteHeader(http.StatusNotFound)
 	} else {
@@ -27,6 +28,7 @@ func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 			writer.Write(encodedData)
 		}
 	}
+	userManager.Close()
 }
 
 func Insert(writer http.ResponseWriter, request *http.Request) {
@@ -36,10 +38,12 @@ func Insert(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
-		if manager.Create().AddUser(&user) {
+		userManager := manager.Create()
+		if userManager.AddUser(&user) {
 			writer.WriteHeader(http.StatusCreated)
 		} else {
 			writer.WriteHeader(http.StatusBadRequest)
 		}
+		userManager.Close()
 	}
 }

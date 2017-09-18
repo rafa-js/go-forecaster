@@ -10,6 +10,8 @@ type UserManager interface {
 	AddUser(user *entity.User) bool
 
 	GetUserByAlias(alias string) *entity.User
+
+	Close()
 }
 
 type DefaultUserManager struct {
@@ -27,6 +29,10 @@ func (manager DefaultUserManager) GetUserByAlias(alias string) *entity.User {
 		return nil
 	}
 	return &entity.User{Alias: "userAlias"}
+}
+
+func (manager DefaultUserManager) Release() {
+	manager.DB.Close()
 }
 
 func Create() UserManager {
