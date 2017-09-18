@@ -13,11 +13,12 @@ func (manager AuthenticatorManager) Login(identifier string, password string) *e
 	user := entity.User{}
 	var count int
 	manager.DB.Where("(Email = ? OR Alias = ?) AND Password = ?",
-		identifier, utils.MD5(password)).First(&user).Count(&count)
+		identifier, utils.MD5(password)).Count(&count).First(&user)
 	if count == 0 {
 		return nil
+	} else {
+		return &user
 	}
-	return &user
 }
 
 func CreateAuthenticatorManager() AuthenticatorManager {
