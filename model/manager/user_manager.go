@@ -16,7 +16,11 @@ func (manager UserManager) AddUser(user *entity.User) bool {
 func (manager UserManager) GetUserByAlias(alias string) *entity.User {
 	user := entity.User{}
 	manager.DB.Where("Alias = ?", alias).First(&user)
-	return &user
+	if user.Alias == ""{
+		return nil
+	} else {
+		return &user
+	}
 }
 
 func CreateUserManager() UserManager {
