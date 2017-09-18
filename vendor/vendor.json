@@ -19,6 +19,12 @@
 			"revisionTime": "2017-08-29T19:49:58Z"
 		},
 		{
+			"checksumSHA1": "M21cLZ7aN1hcMYJ5JpU/8TjEWFE=",
+			"path": "github.com/denisenkom/go-mssqldb",
+			"revision": "ad4c7e0b5fa29e366e2759f57067c671cd819f07",
+			"revisionTime": "2017-09-18T18:07:01Z"
+		},
+		{
 			"checksumSHA1": "QeKwBtN2df+j+4stw3bQJ6yO4EY=",
 			"path": "github.com/gin-contrib/sse",
 			"revision": "22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae",
@@ -103,6 +109,12 @@
 			"revisionTime": "2017-09-04T14:39:19Z"
 		},
 		{
+			"checksumSHA1": "QmQW8snORAputB7/1jFXpsOZa8A=",
+			"path": "github.com/jinzhu/gorm/dialects/postgres",
+			"revision": "b1885a643b4977c9089d77eb07c0fd96591f94b8",
+			"revisionTime": "2017-09-04T14:39:19Z"
+		},
+		{
 			"checksumSHA1": "4VZ1gLZHMumRjV3fclS1aX8S1aQ=",
 			"path": "github.com/jinzhu/gorm/dialects/sqlite",
 			"revision": "b1885a643b4977c9089d77eb07c0fd96591f94b8",
@@ -119,6 +131,24 @@
 			"path": "github.com/json-iterator/go",
 			"revision": "6ed27152e0428abfde127acb33b08b03a1e67cac",
 			"revisionTime": "2017-09-17T08:07:42Z"
+		},
+		{
+			"checksumSHA1": "RYMOEINLFNWIJk8aKNifSlPhg9U=",
+			"path": "github.com/lib/pq",
+			"revision": "23da1db4f16d9658a86ae9b717c245fc078f10f1",
+			"revisionTime": "2017-09-18T17:50:43Z"
+		},
+		{
+			"checksumSHA1": "jaCQF1par6Jl8g+V2Cgp0n/0wSc=",
+			"path": "github.com/lib/pq/hstore",
+			"revision": "23da1db4f16d9658a86ae9b717c245fc078f10f1",
+			"revisionTime": "2017-09-18T17:50:43Z"
+		},
+		{
+			"checksumSHA1": "AU3fA8Sm33Vj9PBoRPSeYfxLRuE=",
+			"path": "github.com/lib/pq/oid",
+			"revision": "23da1db4f16d9658a86ae9b717c245fc078f10f1",
+			"revisionTime": "2017-09-18T17:50:43Z"
 		},
 		{
 			"checksumSHA1": "4hdCoF2DJ4RdQb1eODmKsWA9gfQ=",
@@ -157,6 +187,12 @@
 			"revisionTime": "2017-08-26T15:59:43Z"
 		},
 		{
+			"checksumSHA1": "MCeXr2RNeiG1XG6V+er1OR0qyeo=",
+			"path": "golang.org/x/crypto/md4",
+			"revision": "7d9177d70076375b9a59c8fde23d52d9c4a7ecd5",
+			"revisionTime": "2017-09-15T19:08:28Z"
+		},
+		{
 			"checksumSHA1": "dr5+PfIRzXeN+l1VG+s0lea9qz8=",
 			"path": "golang.org/x/net/context",
 			"revision": "8351a756f30f1297fe94bbf4b767ec589c6ea6d0",
@@ -179,6 +215,10 @@
 			"path": "gopkg.in/yaml.v2",
 			"revision": "eb3733d160e74a9c7e442f435eb3bea458e1d19f",
 			"revisionTime": "2017-08-12T16:00:11Z"
+		},
+		{
+			"path": "ithub.com/lib/pq/hstore",
+			"revision": ""
 		}
 	],
 	"rootPath": "github.com/server-forecaster"

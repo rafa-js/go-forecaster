@@ -2,40 +2,48 @@ package model
 
 import (
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/server-forecaster/model/entity"
 	"os"
 	"fmt"
 	"net/url"
+	"strings"
+)
+
+var (
+	db *gorm.DB
 )
 
 func GetDatabase() *gorm.DB {
 	args := getConnectionParameters()
-	print("SHUUUUU - " + args)
-	db, err := gorm.Open("mysql", args[1])
-	//db, err := gorm.Open("sqlite3", "/tmp/gorm.db")
+	var err error
+	db, err = gorm.Open("postgres", args)
 	if err != nil {
 		panic(err)
 	}
-	configureDatabase(db)
+	db.DB().Begin()
+	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{},
+		entity.ClassificationScore{}, entity.Classification{})
 	return db
 }
 
 func getConnectionParameters() string {
-	stringUrl := os.Getenv("JAWSDB_URL")
+	stringUrl := os.Getenv("DATABASE_URL")
 	if stringUrl == "" {
-		stringUrl = "mysql://ztqr51phul7ksdlw:qanww8l60vd3n8sw@cvktne7b4wbj4ks1.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/llrfhejo56g49g35"
+		stringUrl = "postgres://pfswnjtgetfmco:0221520ae3266aa4fb366c2828d33296aab9c2b64df6bd9146bb3d44f2d77cec@ec2-54-247-189-64.eu-west-1.compute.amazonaws.com:5432/da0t72dr0rbnp0"
 	}
 	dbUrl, err := url.Parse(stringUrl)
 	if err != nil {
 		panic(err)
 	}
-	args := fmt.Sprintf("%v@tcp(%v)%v?charset=utf8&parseTime=True&loc=Local",
-		dbUrl.User.String(), dbUrl.Host, dbUrl.Path)
+	hostParams := strings.Split(dbUrl.Host, ":")
+	loginParams := strings.Split(dbUrl.User.String(), ":")
+	args := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s",
+		hostParams[0], hostParams[1], loginParams[0], loginParams[1], dbUrl.Path[1:])
 	return args
 }
 
-func configureDatabase(db *gorm.DB) {
+func configureDatabase(db gorm.DB) {
 	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{},
 		entity.ClassificationScore{}, entity.Classification{})
 }
