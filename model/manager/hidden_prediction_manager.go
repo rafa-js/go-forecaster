@@ -32,9 +32,9 @@ func (manager HiddenPredictionManager) UpdatePrediction(id int, hiddenPrediction
 
 func (manager HiddenPredictionManager) RevealPrediction(secret string, matchId uint, userId uint) error {
 	hiddenPrediction := entity.HiddenPrediction{}
-	manager.DB.Where("FromUserID = ? AND MatchID = ?", userId, matchId).First(&hiddenPrediction)
-	if hiddenPrediction.ID == 0 {
-		return errors.New("Unknown prediction")
+	err := manager.DB.Where("FromUserID = ? AND MatchID = ?", userId, matchId).First(&hiddenPrediction).Error
+	if err != nil {
+		return err
 	}
 	homeTeamGoals, awayTeamGoals, err := getPredictedGoals(hiddenPrediction.CypheredPrediction, secret)
 	if err != nil {
