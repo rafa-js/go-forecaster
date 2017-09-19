@@ -59,7 +59,7 @@ func handleSaveHiddenPrediction(writer http.ResponseWriter,
 
 type RevealPredictionRequest struct {
 	MatchId uint     `json:"matchId"`
-	Secret  string   `json:"matchId"`
+	Secret  string   `json:"secret"`
 }
 
 func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
