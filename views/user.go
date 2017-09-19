@@ -8,13 +8,13 @@ import (
 	"github.com/server-forecaster/model/entity"
 	"encoding/json"
 	"github.com/liip/sheriff"
+	"github.com/server-forecaster/model"
 )
 
-
 func GetByAlias(writer http.ResponseWriter, request *http.Request) {
+	defer model.GetDatabase().Close()
 	parameters := mux.Vars(request)
 	userManager := manager.CreateUserManager()
-	defer userManager.Close()
 	user := userManager.GetUserByAlias(parameters["alias"])
 	if user == nil {
 		writer.WriteHeader(http.StatusNotFound)
@@ -34,6 +34,7 @@ func GetByAlias(writer http.ResponseWriter, request *http.Request) {
 }
 
 func Insert(writer http.ResponseWriter, request *http.Request) {
+	defer model.GetDatabase().Close()
 	user := entity.User{}
 	decoder := json.NewDecoder(request.Body)
 	err := decoder.Decode(&user)
@@ -42,7 +43,6 @@ func Insert(writer http.ResponseWriter, request *http.Request) {
 	} else {
 		user.Password = utils.MD5(user.Password)
 		userManager := manager.CreateUserManager()
-		defer userManager.Close()
 		if userManager.AddUser(&user) {
 			writer.WriteHeader(http.StatusCreated)
 		} else {

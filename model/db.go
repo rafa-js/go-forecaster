@@ -8,20 +8,24 @@ import (
 	"fmt"
 	"net/url"
 	"strings"
+	"sync"
 )
 
 var (
-	db *gorm.DB
+	db   *gorm.DB
+	once sync.Once
 )
 
 func GetDatabase() *gorm.DB {
-	args := getConnectionParameters()
-	var err error
-	db, err = gorm.Open("postgres", args)
-	if err != nil {
-		panic(err)
-	}
-	configureDatabase(db)
+	once.Do(func() {
+		args := getConnectionParameters()
+		var err error
+		db, err = gorm.Open("postgres", args)
+		if err != nil {
+			panic(err)
+		}
+		configureDatabase(db)
+	})
 	return db
 }
 
@@ -42,6 +46,5 @@ func getConnectionParameters() string {
 }
 
 func configureDatabase(db *gorm.DB) {
-	db.DB().Begin()
 	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{})
 }

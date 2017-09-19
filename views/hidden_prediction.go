@@ -5,9 +5,11 @@ import (
 	"github.com/server-forecaster/model/manager"
 	"encoding/json"
 	"github.com/server-forecaster/model/entity"
+	"github.com/server-forecaster/model"
 )
 
 func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
+	defer model.GetDatabase().Close()
 	hiddenPrediction := entity.HiddenPrediction{}
 	decoder := json.NewDecoder(request.Body)
 	err := decoder.Decode(&hiddenPrediction)
@@ -18,7 +20,6 @@ func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 		hiddenPrediction.FromUser = *fromUser
 
 		hiddenPredictionManager := manager.CreateHiddenPredictionManager()
-		defer hiddenPredictionManager.Close()
 		if hiddenPredictionManager.AddPrediction(&hiddenPrediction) {
 			writer.WriteHeader(http.StatusCreated)
 		} else {
