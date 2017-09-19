@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"io"
 	"github.com/liip/sheriff"
-	"github.com/server-forecaster/model"
 )
 
 func Login(writer http.ResponseWriter, request *http.Request) {
@@ -23,8 +22,8 @@ func Login(writer http.ResponseWriter, request *http.Request) {
 			writer.WriteHeader(http.StatusUnauthorized)
 		} else {
 			o := &sheriff.Options{
-		Groups: []string{"visible"},
-		}
+				Groups: []string{"visible"},
+			}
 			data, _ := sheriff.Marshal(o, user)
 			encodedData, _ := json.Marshal(data)
 			writer.WriteHeader(http.StatusAccepted)

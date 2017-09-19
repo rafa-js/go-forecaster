@@ -11,9 +11,9 @@ import (
 	"github.com/server-forecaster/model"
 )
 
-func wrap(handler http.Handler) http.Handler {
+func wrap(handler func(writer http.ResponseWriter, request *http.Request)) func(http.ResponseWriter, *http.Request) {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		handler.ServeHTTP(w, r)
+		handler(w, r)
 		defer model.GetDatabase().Close()
 	})
 }
@@ -29,16 +29,16 @@ func main() {
 	api := router.PathPrefix("/api").Subrouter()
 
 	userApi := api.PathPrefix("/users").Subrouter()
-	userApi.HandleFunc("/{alias}", views.GetByAlias).Methods("GET")
-	userApi.HandleFunc("", views.Insert).Methods("POST")
+	userApi.HandleFunc("/{alias}", wrap(views.GetByAlias)).Methods("GET")
+	userApi.HandleFunc("", wrap(views.Insert)).Methods("POST")
 
 	authApi := api.PathPrefix("/auth").Subrouter()
-	authApi.HandleFunc("/login", views.Login).Methods("POST")
+	authApi.HandleFunc("/login", wrap(views.Login)).Methods("POST")
 
 	hiddenPredictionApi := api.PathPrefix("/hiddenPredictions").Subrouter()
-	hiddenPredictionApi.HandleFunc("", views.AddHiddenPrediction).Methods("POST")
-	hiddenPredictionApi.HandleFunc("/{id}", views.UpdateHiddenPrediction).Methods("PUT")
-	hiddenPredictionApi.HandleFunc("/reveal", views.RevealHiddenPrediction).Methods("POST")
+	hiddenPredictionApi.HandleFunc("", wrap(views.AddHiddenPrediction)).Methods("POST")
+	hiddenPredictionApi.HandleFunc("/{id}", wrap(views.UpdateHiddenPrediction)).Methods("PUT")
+	hiddenPredictionApi.HandleFunc("/reveal", wrap(views.RevealHiddenPrediction)).Methods("POST")
 
 	log.Panic(http.ListenAndServe(":"+port, router))
 }

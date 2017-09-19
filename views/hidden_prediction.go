@@ -5,7 +5,6 @@ import (
 	"github.com/server-forecaster/model/manager"
 	"encoding/json"
 	"github.com/server-forecaster/model/entity"
-	"github.com/server-forecaster/model"
 	"github.com/server-forecaster/util"
 	"github.com/gorilla/mux"
 	"strconv"
