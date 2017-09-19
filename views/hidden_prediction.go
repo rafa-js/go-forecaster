@@ -80,6 +80,7 @@ func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 			} else {
 				writer.WriteHeader(http.StatusBadRequest)
 				io.WriteString(writer, err.Error())
+				panic(err)
 			}
 		}
 	}

@@ -27,8 +27,8 @@
       <file leaf-file-name="hidden_prediction_manager.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+            <state relative-caret-position="20">
+              <caret line="34" column="93" lean-forward="false" selection-start-line="34" selection-start-column="93" selection-end-line="34" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -658,14 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/manager/user_manager.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/entity/hidden_prediction.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -674,10 +666,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/manager/user_manager.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+        <state relative-caret-position="20">
+          <caret line="34" column="93" lean-forward="false" selection-start-line="34" selection-start-column="93" selection-end-line="34" selection-end-column="93" />
           <folding />
         </state>
       </provider>
