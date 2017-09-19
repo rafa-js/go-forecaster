@@ -20,7 +20,6 @@ func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 }
 
 func UpdateHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
-	defer model.GetDatabase().Close()
 	parameters := mux.Vars(request)
 	id, ok := parameters["id"]
 	if !ok {
