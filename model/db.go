@@ -13,21 +13,20 @@ import (
 )
 
 var (
-	db   *gorm.DB
+	DB   *gorm.DB
 	once sync.Once
 )
 
-func GetDatabase() *gorm.DB {
+func OpenDB()  {
+	args := getConnectionParameters()
+	var err error
+	DB, err = gorm.Open("postgres", args)
+	if err != nil {
+		panic(err)
+	}
 	once.Do(func() {
-		args := getConnectionParameters()
-		var err error
-		db, err = gorm.Open("postgres", args)
-		if err != nil {
-			panic(err)
-		}
-		configureDatabase(db)
+		configureDatabase(DB)
 	})
-	return db
 }
 
 func getConnectionParameters() string {

@@ -13,8 +13,9 @@ import (
 
 func wrap(handler func(writer http.ResponseWriter, request *http.Request)) func(http.ResponseWriter, *http.Request) {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		model.OpenDB()
 		handler(w, r)
-		defer model.GetDatabase().Close()
+		defer model.DB.Close()
 	})
 }
 

@@ -14,6 +14,5 @@ func (manager BaseManager) Close() {
 }
 
 func Create() BaseManager {
-	db := model.GetDatabase()
-	return BaseManager{DB: db}
+	return BaseManager{DB: model.DB}
 }
