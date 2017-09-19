@@ -41,7 +41,6 @@ func Encrypt(secret string, text string) (string, error) {
 func Decrypt(secret string, cryptoText string) (string, error) {
 	secret = fillWithPadding(secret)
 	key := []byte(secret)
-	println("Using key: " + secret)
 	ciphertext, _ := base64.URLEncoding.DecodeString(cryptoText)
 
 	block, err := aes.NewCipher(key)

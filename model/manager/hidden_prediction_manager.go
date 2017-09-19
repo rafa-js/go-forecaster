@@ -42,7 +42,7 @@ func (manager HiddenPredictionManager) RevealPrediction(secret string, matchId u
 	}
 	prediction := entity.Prediction{Match: hiddenPrediction.Match, FromUser: hiddenPrediction.FromUser,
 		HomeTeamGoals: homeTeamGoals, AwayTeamGoals: awayTeamGoals}
-	err = manager.DB.Create(prediction).Error
+	err = manager.DB.Create(&prediction).Error
 	if err != nil {
 		return err
 	}
