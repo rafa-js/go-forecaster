@@ -11,11 +11,13 @@ func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 	hiddenPrediction := entity.HiddenPrediction{}
 	decoder := json.NewDecoder(request.Body)
 	err := decoder.Decode(&hiddenPrediction)
+	panic(hiddenPrediction.Match.ID)
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
 		fromUser := GetUserByToken(GetAuthToken(request))
 		hiddenPrediction.FromUser = *fromUser
+
 		hiddenPredictionManager := manager.CreateHiddenPredictionManager()
 		defer hiddenPredictionManager.Close()
 		if hiddenPredictionManager.AddPrediction(&hiddenPrediction) {
