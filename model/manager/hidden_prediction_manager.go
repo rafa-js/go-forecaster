@@ -19,11 +19,14 @@ func (manager HiddenPredictionManager) InsertPrediction(hiddenPrediction *entity
 func (manager HiddenPredictionManager) UpdatePrediction(id int, hiddenPrediction *entity.HiddenPrediction) error {
 	currentPrediction := entity.HiddenPrediction{}
 	manager.DB.First(&currentPrediction, id)
-	if currentPrediction.ID != 0 && currentPrediction.FromUser == hiddenPrediction.FromUser {
-		err := manager.DB.Model(&hiddenPrediction).Update("CypheredPrediction").Error
+	if currentPrediction.ID == 0 {
+		return errors.New("Invalid ID")
+	} else if currentPrediction.FromUser == hiddenPrediction.FromUser {
+		return errors.New("You don't have permission to update this entity")
+	} else {
+		err := manager.DB.Model(hiddenPrediction).Update("CypheredPrediction").Error
 		return err
 	}
-	return errors.New("Invalid ID")
 }
 
 func (manager HiddenPredictionManager) RevealPrediction(secret string, matchId uint, userId uint) error {
