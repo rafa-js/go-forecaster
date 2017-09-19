@@ -43,7 +43,7 @@ func handleSaveHiddenPrediction(writer http.ResponseWriter,
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
-		fromUser := util.GetUserByToken(util.GetAuthToken(request))
+		fromUser := GetUserByToken(util.GetAuthToken(request))
 		if fromUser == nil {
 			writer.WriteHeader(http.StatusUnauthorized)
 		} else {
@@ -70,7 +70,7 @@ func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
-		fromUser := util.GetUserByToken(util.GetAuthToken(request))
+		fromUser := GetUserByToken(util.GetAuthToken(request))
 		if fromUser == nil {
 			writer.WriteHeader(http.StatusUnauthorized)
 		} else {
