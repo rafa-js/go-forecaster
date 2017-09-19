@@ -29,6 +29,8 @@ func main() {
 
 	hiddenPredictionApi := api.PathPrefix("/hiddenPredictions").Subrouter()
 	hiddenPredictionApi.HandleFunc("", views.AddHiddenPrediction).Methods("POST")
+	hiddenPredictionApi.HandleFunc("/{id}", views.UpdateHiddenPrediction).Methods("PUT")
+	hiddenPredictionApi.HandleFunc("/reveal", views.RevealHiddenPrediction).Methods("POST")
 
 	log.Panic(http.ListenAndServe(":"+port, router))
 }
