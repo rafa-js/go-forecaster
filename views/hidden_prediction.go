@@ -9,6 +9,7 @@ import (
 	"github.com/server-forecaster/util"
 	"github.com/gorilla/mux"
 	"strconv"
+	"io"
 )
 
 func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
@@ -75,10 +76,12 @@ func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 			writer.WriteHeader(http.StatusUnauthorized)
 		} else {
 			hiddenPredictionManager := manager.CreateHiddenPredictionManager()
-			if hiddenPredictionManager.RevealPrediction(revealRequest.Secret, revealRequest.MatchId, fromUser.ID) {
+			err := hiddenPredictionManager.RevealPrediction(revealRequest.Secret, revealRequest.MatchId, fromUser.ID)
+			if err == nil {
 				writer.WriteHeader(http.StatusCreated)
 			} else {
 				writer.WriteHeader(http.StatusBadRequest)
+				io.WriteString(writer, err.Error())
 			}
 		}
 	}
