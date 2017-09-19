@@ -21,9 +21,7 @@ func GetDatabase() *gorm.DB {
 	if err != nil {
 		panic(err)
 	}
-	db.DB().Begin()
-	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{},
-		entity.ClassificationScore{}, entity.Classification{})
+	configureDatabase(db)
 	return db
 }
 
@@ -43,7 +41,7 @@ func getConnectionParameters() string {
 	return args
 }
 
-func configureDatabase(db gorm.DB) {
-	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{},
-		entity.ClassificationScore{}, entity.Classification{})
+func configureDatabase(db *gorm.DB) {
+	db.DB().Begin()
+	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{})
 }
