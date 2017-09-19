@@ -32,7 +32,7 @@ func (manager HiddenPredictionManager) UpdatePrediction(id int, hiddenPrediction
 
 func (manager HiddenPredictionManager) RevealPrediction(secret string, matchId uint, userId uint) error {
 	hiddenPrediction := entity.HiddenPrediction{}
-	err := manager.DB.Where("FromUserID = ? AND MatchID = ?", userId, matchId).First(&hiddenPrediction).Error
+	err := manager.DB.Where("from_user_id = ? AND match_id = ?", userId, matchId).First(&hiddenPrediction).Error
 	if err != nil {
 		return err
 	}
