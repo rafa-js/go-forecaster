@@ -17,16 +17,16 @@ var (
 )
 
 func GetDatabase() *gorm.DB {
+	args := getConnectionParameters()
+	var err error
+	db, err = gorm.Open("postgres", args)
+	if err != nil {
+		panic(err)
+	}
 	once.Do(func() {
-		args := getConnectionParameters()
-		var err error
-		db, err = gorm.Open("postgres", args)
-		if err != nil {
-			panic(err)
-		}
 		configureDatabase(db)
 	})
-	db.Begin()
+	//db.Begin()
 	return db
 }
 
