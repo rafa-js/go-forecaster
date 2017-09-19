@@ -17,13 +17,16 @@ func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
 		fromUser := GetUserByToken(GetAuthToken(request))
-		hiddenPrediction.FromUser = *fromUser
-
-		hiddenPredictionManager := manager.CreateHiddenPredictionManager()
-		if hiddenPredictionManager.AddPrediction(&hiddenPrediction) {
-			writer.WriteHeader(http.StatusCreated)
+		if fromUser == nil {
+			writer.WriteHeader(http.StatusUnauthorized)
 		} else {
-			writer.WriteHeader(http.StatusBadRequest)
+			hiddenPrediction.FromUser = *fromUser
+			hiddenPredictionManager := manager.CreateHiddenPredictionManager()
+			if hiddenPredictionManager.AddPrediction(&hiddenPrediction) {
+				writer.WriteHeader(http.StatusCreated)
+			} else {
+				writer.WriteHeader(http.StatusBadRequest)
+			}
 		}
 	}
 }
