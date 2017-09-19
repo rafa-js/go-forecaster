@@ -49,7 +49,7 @@ func handleSaveHiddenPrediction(writer http.ResponseWriter,
 		} else {
 			hiddenPrediction.FromUser = *fromUser
 			err := handle(&hiddenPrediction)
-			if err != nil {
+			if err == nil {
 				writer.WriteHeader(successCode)
 			} else {
 				writer.WriteHeader(http.StatusBadRequest)
