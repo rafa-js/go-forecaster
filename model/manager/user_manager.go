@@ -25,7 +25,7 @@ func (manager UserManager) GetUserByAlias(alias string) *entity.User {
 
 func (manager UserManager) GetUserByToken(token string) *entity.User {
 	user := entity.User{}
-	manager.DB.Where("AuthToken = ?", token).First(&user)
+	manager.DB.Where("auth_token = ?", token).First(&user)
 	if user.Alias == ""{
 		return nil
 	} else {
