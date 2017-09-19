@@ -27,5 +27,8 @@ func main() {
 	authApi := api.PathPrefix("/auth").Subrouter()
 	authApi.HandleFunc("/login", views.Login).Methods("POST")
 
+	hiddenPredictionApi := api.PathPrefix("/hiddenPredictions").Subrouter()
+	hiddenPredictionApi.HandleFunc("", views.AddHiddenPrediction).Methods("POST")
+
 	log.Panic(http.ListenAndServe(":"+port, router))
 }
