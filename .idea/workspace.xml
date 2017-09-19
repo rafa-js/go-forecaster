@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f0634168-ba2e-4d46-af4a-3e186bf738f2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/manager/authenticator_manager.go" afterPath="$PROJECT_DIR$/model/manager/authenticator_manager.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/manager/user_manager.go" afterPath="$PROJECT_DIR$/model/manager/user_manager.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/db.go" afterPath="$PROJECT_DIR$/model/db.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,6 +44,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="db.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/db.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hidden_prediction_manager.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authenticator_manager.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="authenticator_manager.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/manager/authenticator_manager.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
@@ -135,13 +154,13 @@
         <option value="$PROJECT_DIR$/model/manager/match_manager.go" />
         <option value="$PROJECT_DIR$/model/entity/prediction.go" />
         <option value="$PROJECT_DIR$/model/entity/hidden_prediction.go" />
-        <option value="$PROJECT_DIR$/model/db.go" />
         <option value="$PROJECT_DIR$/views/auth.go" />
         <option value="$PROJECT_DIR$/views/user.go" />
         <option value="$PROJECT_DIR$/model/manager/hidden_prediction_manager.go" />
         <option value="$PROJECT_DIR$/views/hidden_prediction.go" />
         <option value="$PROJECT_DIR$/model/manager/user_manager.go" />
         <option value="$PROJECT_DIR$/model/manager/authenticator_manager.go" />
+        <option value="$PROJECT_DIR$/model/db.go" />
       </list>
     </option>
   </component>
@@ -555,14 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="94" column="4" lean-forward="false" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/manager/base_manager.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -617,14 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="1416" column="14" lean-forward="false" selection-start-line="1416" selection-start-column="14" selection-end-line="1416" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/db.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -691,6 +694,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/db.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
           <folding />
         </state>
       </provider>

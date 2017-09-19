@@ -26,6 +26,7 @@ func GetDatabase() *gorm.DB {
 		}
 		configureDatabase(db)
 	})
+	db.Begin()
 	return db
 }
 
