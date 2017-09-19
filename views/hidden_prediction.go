@@ -14,7 +14,7 @@ import (
 
 func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 	hiddenPredictionManager := manager.CreateHiddenPredictionManager()
-	handleSaveHiddenPrediction(writer, request, func(hiddenPred *entity.HiddenPrediction) bool {
+	handleSaveHiddenPrediction(writer, request, func(hiddenPred *entity.HiddenPrediction) error {
 		return hiddenPredictionManager.InsertPrediction(hiddenPred)
 	})
 }
@@ -28,14 +28,14 @@ func UpdateHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	hiddenPredictionManager := manager.CreateHiddenPredictionManager()
-	handleSaveHiddenPrediction(writer, request, func(hiddenPred *entity.HiddenPrediction) bool {
+	handleSaveHiddenPrediction(writer, request, func(hiddenPred *entity.HiddenPrediction) error {
 		predId, _ := strconv.Atoi(id)
 		return hiddenPredictionManager.UpdatePrediction(predId, hiddenPred)
 	})
 }
 
 func handleSaveHiddenPrediction(writer http.ResponseWriter,
-	request *http.Request, handle func(hiddenPred *entity.HiddenPrediction) bool) {
+	request *http.Request, handle func(hiddenPred *entity.HiddenPrediction) error) {
 
 	defer model.GetDatabase().Close()
 	hiddenPrediction := entity.HiddenPrediction{}
@@ -49,7 +49,8 @@ func handleSaveHiddenPrediction(writer http.ResponseWriter,
 			writer.WriteHeader(http.StatusUnauthorized)
 		} else {
 			hiddenPrediction.FromUser = *fromUser
-			if handle(&hiddenPrediction) {
+			err := handle(&hiddenPrediction)
+			if err != nil {
 				writer.WriteHeader(http.StatusCreated)
 			} else {
 				writer.WriteHeader(http.StatusBadRequest)
