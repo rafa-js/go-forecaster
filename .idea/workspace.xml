@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0634168-ba2e-4d46-af4a-3e186bf738f2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/manager/authenticator_manager.go" afterPath="$PROJECT_DIR$/model/manager/authenticator_manager.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/manager/user_manager.go" afterPath="$PROJECT_DIR$/model/manager/user_manager.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,11 +35,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_manager.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user_manager.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/manager/user_manager.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+              <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hidden_prediction_manager.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -53,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authenticator_manager.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="authenticator_manager.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/manager/authenticator_manager.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+              <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -128,8 +140,8 @@
         <option value="$PROJECT_DIR$/views/user.go" />
         <option value="$PROJECT_DIR$/model/manager/hidden_prediction_manager.go" />
         <option value="$PROJECT_DIR$/views/hidden_prediction.go" />
-        <option value="$PROJECT_DIR$/model/manager/authenticator_manager.go" />
         <option value="$PROJECT_DIR$/model/manager/user_manager.go" />
+        <option value="$PROJECT_DIR$/model/manager/authenticator_manager.go" />
       </list>
     </option>
   </component>
@@ -635,14 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hidden_prediction.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -667,18 +671,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/manager/authenticator_manager.go">
+    <entry file="file://$PROJECT_DIR$/model/manager/user_manager.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+        <state relative-caret-position="240">
+          <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/manager/user_manager.go">
+    <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+        <state relative-caret-position="225">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/manager/authenticator_manager.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding />
         </state>
       </provider>
