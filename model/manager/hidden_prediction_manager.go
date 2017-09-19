@@ -4,7 +4,7 @@ import (
 	"github.com/server-forecaster/model/entity"
 	"github.com/server-forecaster/util"
 	"strings"
-	"golang.org/x/crypto/openpgp/errors"
+	"errors"
 	"strconv"
 )
 
@@ -27,39 +27,39 @@ func (manager HiddenPredictionManager) UpdatePrediction(id int, hiddenPrediction
 	return false
 }
 
-func (manager HiddenPredictionManager) RevealPrediction(secret string, matchId uint, userId uint) bool {
+func (manager HiddenPredictionManager) RevealPrediction(secret string, matchId uint, userId uint) error {
 	hiddenPrediction := entity.HiddenPrediction{}
 	manager.DB.Where("UserId = ? AND MatchId = ?").First(&hiddenPrediction)
 	if hiddenPrediction.ID == 0 {
-		return false
+		return errors.New("Unknown prediction")
 	}
 	homeTeamGoals, awayTeamGoals, err := getPredictedGoals(hiddenPrediction.CypheredPrediction, secret)
-	if err == nil {
-		return false
+	if err != nil {
+		return err
 	}
 	prediction := entity.Prediction{Match: hiddenPrediction.Match, FromUser: hiddenPrediction.FromUser,
 		HomeTeamGoals: homeTeamGoals, AwayTeamGoals: awayTeamGoals}
 	err = manager.DB.Create(prediction).Error
-	if err == nil {
-		return false
+	if err != nil {
+		return err
 	}
 	manager.DB.Delete(&hiddenPrediction)
-	return true
+	return nil
 }
 
 func getPredictedGoals(encodedPrediction string, secret string) (int, int, error) {
 	decodedPrediction, err := util.Decrypt(secret, encodedPrediction)
 	if err != nil {
-		return -1, -1, errors.ErrKeyIncorrect
+		return -1, -1, errors.New("Incorrect key")
 	}
 	results := strings.Split(decodedPrediction, ":")
 	if len(results) != 2 {
-		return -1, -1, error("Malformed prediction. Must follow the format 'homeGoals:AwayGoals'")
+		return -1, -1, errors.New("Malformed prediction. Must follow the format 'homeGoals:AwayGoals'")
 	}
 	homeTeamGoals, homeErr := strconv.Atoi(results[0])
 	awayTeamGoals, awayErr := strconv.Atoi(results[1])
 	if homeErr != nil || awayErr != nil {
-		return -1, -1, error("Malformed prediction. 'homeGoals' and 'AwayGoals' must be integers")
+		return -1, -1, errors.New("Malformed prediction. 'homeGoals' and 'AwayGoals' must be integers")
 	}
 	return homeTeamGoals, awayTeamGoals, nil
 }
