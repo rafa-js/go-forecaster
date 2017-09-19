@@ -36,7 +36,6 @@ func UpdateHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 func handleSaveHiddenPrediction(writer http.ResponseWriter,
 	request *http.Request, successCode int, handle func(hiddenPred *entity.HiddenPrediction) error) {
 
-	defer model.GetDatabase().Close()
 	hiddenPrediction := entity.HiddenPrediction{}
 	decoder := json.NewDecoder(request.Body)
 	err := decoder.Decode(&hiddenPrediction)
@@ -53,6 +52,7 @@ func handleSaveHiddenPrediction(writer http.ResponseWriter,
 				writer.WriteHeader(successCode)
 			} else {
 				writer.WriteHeader(http.StatusBadRequest)
+				io.WriteString(writer, err.Error())
 			}
 		}
 	}
