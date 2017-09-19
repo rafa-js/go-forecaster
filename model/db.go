@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"strings"
 	"sync"
+	"time"
 )
 
 var (
@@ -17,16 +18,15 @@ var (
 )
 
 func GetDatabase() *gorm.DB {
-	args := getConnectionParameters()
-	var err error
-	db, err = gorm.Open("postgres", args)
-	if err != nil {
-		panic(err)
-	}
 	once.Do(func() {
+		args := getConnectionParameters()
+		var err error
+		db, err = gorm.Open("postgres", args)
+		if err != nil {
+			panic(err)
+		}
 		configureDatabase(db)
 	})
-	//db.Begin()
 	return db
 }
 
@@ -47,5 +47,7 @@ func getConnectionParameters() string {
 }
 
 func configureDatabase(db *gorm.DB) {
+	db.DB().SetConnMaxLifetime(3 * time.Second)
+	db.DB().SetMaxOpenConns(15)
 	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{})
 }

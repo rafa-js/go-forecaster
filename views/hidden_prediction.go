@@ -36,7 +36,6 @@ func UpdateHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 func handleSaveHiddenPrediction(writer http.ResponseWriter,
 	request *http.Request, successCode int, handle func(hiddenPred *entity.HiddenPrediction) error) {
 
-	defer model.GetDatabase().Close()
 	hiddenPrediction := entity.HiddenPrediction{}
 	decoder := json.NewDecoder(request.Body)
 	err := decoder.Decode(&hiddenPrediction)
@@ -65,7 +64,6 @@ type RevealPredictionRequest struct {
 }
 
 func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
-	defer model.GetDatabase().Close()
 	revealRequest := RevealPredictionRequest{}
 	decoder := json.NewDecoder(request.Body)
 	err := decoder.Decode(&revealRequest)

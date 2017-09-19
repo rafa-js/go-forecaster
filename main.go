@@ -8,7 +8,15 @@ import (
 	"github.com/server-forecaster/views"
 	"github.com/gorilla/mux"
 	"log"
+	"github.com/server-forecaster/model"
 )
+
+func wrap(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		handler.ServeHTTP(w, r)
+		defer model.GetDatabase().Close()
+	})
+}
 
 func main() {
 	port := os.Getenv("PORT")
