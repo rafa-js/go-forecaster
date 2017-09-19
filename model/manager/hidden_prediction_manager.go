@@ -24,7 +24,8 @@ func (manager HiddenPredictionManager) UpdatePrediction(id int, hiddenPrediction
 	} else if currentPrediction.FromUser == hiddenPrediction.FromUser {
 		return errors.New("You don't have permission to update this entity")
 	} else {
-		err := manager.DB.Model(hiddenPrediction).Update("CypheredPrediction").Error
+		currentPrediction.CypheredPrediction = hiddenPrediction.CypheredPrediction
+		err := manager.DB.Save(currentPrediction).Error
 		return err
 	}
 }
