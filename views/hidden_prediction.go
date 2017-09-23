@@ -75,7 +75,6 @@ func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 		} else {
 			hiddenPredictionManager := manager.CreateHiddenPredictionManager()
 			err := hiddenPredictionManager.RevealPrediction(revealRequest.Secret, revealRequest.MatchId, fromUser.ID)
-			println("From User: ", fromUser.ID, " and match ID ", revealRequest.MatchId)
 			if err == nil {
 				writer.WriteHeader(http.StatusCreated)
 			} else {
