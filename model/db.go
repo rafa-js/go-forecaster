@@ -8,25 +8,21 @@ import (
 	"fmt"
 	"net/url"
 	"strings"
-	"sync"
 	"time"
 )
 
 var (
-	DB   *gorm.DB
-	once sync.Once
+	DB *gorm.DB
 )
 
-func OpenDB()  {
+func OpenDB() {
 	args := getConnectionParameters()
 	var err error
 	DB, err = gorm.Open("postgres", args)
 	if err != nil {
 		panic(err)
 	}
-	once.Do(func() {
-		configureDatabase(DB)
-	})
+	configureDatabase(DB)
 }
 
 func getConnectionParameters() string {
