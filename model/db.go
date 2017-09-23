@@ -43,6 +43,7 @@ func getConnectionParameters() string {
 
 func configureDatabase(db *gorm.DB) {
 	db.DB().SetConnMaxLifetime(3 * time.Second)
+	DB.Debug()
 	db.DB().SetMaxOpenConns(15)
 	db.AutoMigrate(&entity.User{}, &entity.Match{}, &entity.Prediction{}, entity.HiddenPrediction{})
 }
