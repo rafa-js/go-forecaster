@@ -32,7 +32,6 @@ func (manager HiddenPredictionManager) UpdatePrediction(id int, hiddenPrediction
 
 func (manager HiddenPredictionManager) GetHiddenPredictionByMatchAndUser(matchId uint, userId uint) *entity.HiddenPrediction {
 	hiddenPrediction := entity.HiddenPrediction{}
-	println("USER:", userId, "Match:", matchId)
 	result := manager.DB.Where("from_user_id = ? AND match_id = ?", userId, matchId).First(&hiddenPrediction)
 	if result.RecordNotFound() {
 		return nil
