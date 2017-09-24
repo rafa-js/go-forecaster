@@ -31,7 +31,7 @@ func updateMatches() {
 
 func updatePredictionResults() {
 	for {
-		<-time.After(10 * time.Minute)
+		<-time.After(1 * time.Minute)
 		task.UpdatePredictionResults()
 		println("PREDICTION RESULTS UPDATED")
 	}
