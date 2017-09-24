@@ -13,7 +13,7 @@ func GetClassification(writer http.ResponseWriter, request *http.Request) {
 	o := &sheriff.Options{
 		Groups: []string{"visible"},
 	}
-	data, err := sheriff.Marshal(o, classification)
+	data, err := sheriff.Marshal(o, classification.Scores[0])
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
