@@ -22,6 +22,7 @@ func (manager ClassificationManager) GetClassification() *entity.Classification 
 			panic(err)
 		}
 		for _, hit := range hits {
+			hit.Match = entity.Match{}
 			manager.DB.Model(hit).Related(&hit.Match)
 			manager.DB.Model(hit).Related(&hit.FromUser)
 		}
