@@ -17,6 +17,12 @@ type JsonMatchResult struct {
 	AwayTeamGoals int `json:"goalsAwayTeam"`
 }
 
+type Links struct {
+	Competition string `json:"competition"`
+	HomeTeam    string `json:"homeTeam"`
+	AwayTeam    string `json:"awayTeam"`
+}
+
 type JsonMatch struct {
 	Date         time.Time `json:"date"`
 	Status       string `json:"status"`
@@ -25,6 +31,7 @@ type JsonMatch struct {
 	HomeTeamName string `json:"homeTeamName"`
 	AwayTeamName string `json:"awayTeamName"`
 	Result       JsonMatchResult `json:"result"`
+	Links        Links `json:"_links"`
 }
 
 type ApiResponse struct {
@@ -36,7 +43,6 @@ func UpdateMatches() []entity.Match {
 	matchManager := manager.CreateMatchManager()
 	updatedMatches := []entity.Match{}
 	for _, jsonMatch := range apiResponse.Fixtures {
-		println("Updating match", jsonMatch)
 		match := createMatchFromJson(&jsonMatch)
 		if matchManager.AddOrUpdateMatch(match) {
 			updatedMatches = append(updatedMatches, *match)
@@ -81,7 +87,7 @@ func createMatchFromJson(jsonMatch *JsonMatch) *entity.Match {
 	match := entity.Match{}
 	match.Date = jsonMatch.Date
 	match.MatchDay = jsonMatch.MatchDay
-	match.Competition = jsonMatch.Competition
+	match.Competition = jsonMatch.Links.Competition
 	match.Status = jsonMatch.Status
 	match.HomeTeamName = jsonMatch.HomeTeamName
 	match.AwayTeamName = jsonMatch.AwayTeamName
