@@ -42,7 +42,7 @@ func main() {
 	hiddenPredictionApi.HandleFunc("/reveal", wrap(views.RevealHiddenPrediction)).Methods("POST")
 
 	classificationApi := api.PathPrefix("/classification").Subrouter()
-	classificationApi.HandleFunc("", wrap(views.Login)).Methods("GET")
+	classificationApi.HandleFunc("", wrap(views.GetClassification)).Methods("GET")
 
 	log.Panic(http.ListenAndServe(":"+port, router))
 }
