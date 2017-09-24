@@ -16,7 +16,7 @@ func (manager MatchManager) GetTimedMatches() []entity.Match {
 
 func (manager MatchManager) GetByID(id uint) entity.Match {
 	match := entity.Match{}
-	manager.DB.Find(match, id)
+	manager.DB.Find(&match, id)
 	return match
 }
 
