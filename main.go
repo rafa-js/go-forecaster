@@ -41,5 +41,8 @@ func main() {
 	hiddenPredictionApi.HandleFunc("/{id}", wrap(views.UpdateHiddenPrediction)).Methods("PUT")
 	hiddenPredictionApi.HandleFunc("/reveal", wrap(views.RevealHiddenPrediction)).Methods("POST")
 
+	classificationApi := api.PathPrefix("/classification").Subrouter()
+	classificationApi.HandleFunc("", wrap(views.Login)).Methods("GET")
+
 	log.Panic(http.ListenAndServe(":"+port, router))
 }
