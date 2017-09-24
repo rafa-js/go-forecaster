@@ -55,6 +55,9 @@ func main() {
 	hiddenPredictionApi.HandleFunc("/{id}", wrap(views.UpdateHiddenPrediction)).Methods("PUT")
 	hiddenPredictionApi.HandleFunc("/reveal", wrap(views.RevealHiddenPrediction)).Methods("POST")
 
+	calendarApi := api.PathPrefix("/calendar").Subrouter()
+	calendarApi.HandleFunc("/timed", wrap(views.GetTimedMatches)).Methods("GET")
+
 	classificationApi := api.PathPrefix("/classification").Subrouter()
 	classificationApi.HandleFunc("", wrap(views.GetClassification)).Methods("GET")
 

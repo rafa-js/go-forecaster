@@ -8,9 +8,9 @@ type MatchManager struct {
 	BaseManager
 }
 
-func (manager MatchManager) GetCalendar() []entity.Match {
+func (manager MatchManager) GetTimedMatches() []entity.Match {
 	matches := []entity.Match{}
-	manager.DB.Find(&matches).Order("Date asc")
+	manager.DB.Where("status = ?", "TIMED").Find(&matches).Order("Date asc")
 	return matches
 }
 
