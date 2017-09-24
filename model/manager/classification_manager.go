@@ -21,7 +21,7 @@ func (manager ClassificationManager) GetClassification() *entity.Classification 
 		if err != nil {
 			panic(err)
 		}
-		manager.DB.Preload("FromUser").Find(&hits)
+		manager.DB.Preload("Match").Find(&hits)
 		classificationScore := entity.ClassificationScore{User: user, Hits: hits, TotalHits: len(hits)}
 		classification.Scores = append(classification.Scores, classificationScore)
 	}
