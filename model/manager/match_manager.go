@@ -16,7 +16,6 @@ func (manager MatchManager) GetCalendar() []entity.Match {
 
 func (manager MatchManager) AddOrUpdateMatch(match *entity.Match) bool {
 	currentMatch := entity.Match{}
-	println("Updating match", match.Competition, match.MatchDay, match.HomeTeamGoals, match.AwayTeamGoals)
 	manager.DB.Where(entity.Match{Competition: match.Competition, MatchDay: match.MatchDay,
 		HomeTeamName: match.HomeTeamName, AwayTeamName: match.AwayTeamName}).First(&currentMatch)
 	isNewMatch := manager.DB.NewRecord(&currentMatch)
