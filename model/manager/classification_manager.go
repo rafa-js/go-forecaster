@@ -16,7 +16,7 @@ func (manager ClassificationManager) GetClassification() *entity.Classification 
 		panic(err)
 	}
 	for _, user := range users {
-		hits := []entity.Match{}
+		hits := []entity.Prediction{}
 		err := manager.DB.Where("hit = 1 AND from_user_id = ?", user.ID).Find(&hits)
 		if err != nil {
 			panic(err)
