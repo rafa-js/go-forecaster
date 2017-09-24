@@ -27,7 +27,7 @@ func updateMatches() {
 		updatedMatches := task.UpdateMatches()
 		println("MATCHES UPDATED: Total matches updated:", len(updatedMatches))
 		for _, match := range updatedMatches {
-			println(match)
+			println(match.ID)
 		}
 	}
 }
