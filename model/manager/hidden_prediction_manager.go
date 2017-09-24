@@ -44,7 +44,7 @@ func (manager HiddenPredictionManager) RevealPrediction(secret string, hiddenPre
 	if err != nil {
 		return err
 	}
-	prediction := entity.Prediction{MatchID: hiddenPrediction.MatchID,
+	prediction := entity.Prediction{MatchID: hiddenPrediction.MatchID, IsPending: true,
 		FromUserID: hiddenPrediction.FromUserID, HomeTeamGoals: homeTeamGoals, AwayTeamGoals: awayTeamGoals}
 	err = manager.DB.Create(&prediction).Error
 	if err != nil {

@@ -13,4 +13,5 @@ type Prediction struct {
 	HomeTeamGoals int    `json:"homeTeamGoals" groups:"readable,visible"`
 	AwayTeamGoals int    `json:"awayTeamGoals" groups:"readable,visible"`
 	IsHit         bool   `json:"hit" groups:"readable,visible"`
+	IsPending     bool   `json:"pending" groups:"readable,visible"`
 }

@@ -19,7 +19,7 @@ func (manager PredictionManager) UpdatePredictionResults(match entity.Match) {
 		return
 	}
 	predictions := []entity.Prediction{}
-	err := manager.DB.Where("match_id = ?", match.ID).Find(&predictions).Error
+	err := manager.DB.Where("match_id = ? AND is_pending = true", match.ID).Find(&predictions).Error
 	if err != nil {
 		panic(err)
 	}
@@ -27,6 +27,7 @@ func (manager PredictionManager) UpdatePredictionResults(match entity.Match) {
 		isHit := prediction.AwayTeamGoals == match.AwayTeamGoals &&
 			prediction.HomeTeamGoals == match.HomeTeamGoals
 		manager.DB.Model(&prediction).Update("IsHit", isHit)
+		manager.DB.Model(&prediction).Update(map[string]interface{}{"IsHit": isHit, "IsPending": false})
 	}
 }
 
