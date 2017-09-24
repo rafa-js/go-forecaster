@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"github.com/server-forecaster/model/entity"
 	"github.com/server-forecaster/model/manager"
+	"github.com/server-forecaster/model"
 )
 
 const SERVICE_ENDPOINT = "http://api.football-data.org/v1/teams/86/fixtures"
@@ -43,6 +44,7 @@ type ApiResponse struct {
 }
 
 func UpdateMatches() []entity.Match {
+	model.OpenDB()
 	apiResponse := getApiMatches()
 	matchManager := manager.CreateMatchManager()
 	updatedMatches := []entity.Match{}
@@ -52,6 +54,7 @@ func UpdateMatches() []entity.Match {
 			updatedMatches = append(updatedMatches, *match)
 		}
 	}
+	matchManager.DB.Close()
 	return updatedMatches
 }
 
