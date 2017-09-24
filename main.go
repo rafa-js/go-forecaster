@@ -9,6 +9,8 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"github.com/server-forecaster/model"
+	"time"
+	"github.com/server-forecaster/task"
 )
 
 func wrap(handler func(writer http.ResponseWriter, request *http.Request)) func(http.ResponseWriter, *http.Request) {
@@ -19,9 +21,21 @@ func wrap(handler func(writer http.ResponseWriter, request *http.Request)) func(
 	})
 }
 
-func main() {
-	port := os.Getenv("PORT")
+func updateMatches() {
+	for {
+		<-time.After(20 * time.Minute)
+		updatedMatches := task.UpdateMatches()
+		println("MATCHES UPDATED: Total matches updated:", len(updatedMatches))
+		for _, match := range updatedMatches {
+			println(match)
+		}
+	}
+}
 
+func main() {
+	go updateMatches()
+
+	port := os.Getenv("PORT")
 	if port == "" {
 		port = "80"
 	}
