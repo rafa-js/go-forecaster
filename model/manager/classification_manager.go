@@ -23,11 +23,12 @@ func (manager ClassificationManager) GetClassification() *entity.Classification 
 		if err != nil {
 			panic(err)
 		}
-		//for _, hit := range hits {
+		for _, hit := range hits {
 		//	hit.Match = entity.Match{}
 		//	manager.DB.Model(hit).Related(&hit.Match)
 		//	manager.DB.Model(hit).Related(&hit.FromUser)
-		//}
+			hit.FromUser = user
+		}
 		classificationScore := entity.ClassificationScore{User: user, Hits: hits, TotalHits: len(hits)}
 		classification.Scores = append(classification.Scores, classificationScore)
 	}
