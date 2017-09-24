@@ -12,5 +12,5 @@ type Prediction struct {
 	FromUserID    uint   `gorm:"unique_index:idx_match"`
 	HomeTeamGoals int    `json:"homeTeamGoals" groups:"readable,visible"`
 	AwayTeamGoals int    `json:"awayTeamGoals" groups:"readable,visible"`
-	IsHit         bool      `json:"hit" groups:"readable,visible"`
+	IsHit         bool   `json:"hit" groups:"readable,visible"`
 }
