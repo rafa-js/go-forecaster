@@ -16,21 +16,22 @@ func (manager ClassificationManager) GetClassification() *entity.Classification 
 		panic(err)
 	}
 	for _, user := range users {
-		hits := []entity.Prediction{}
-		err := manager.DB.Where("is_hit = true AND from_user_id = ?", user.ID).
+		predictions := []entity.Prediction{}
+		err := manager.DB.Where("from_user_id = ?", user.ID).
 			Preload("FromUser", "ID = ?", user.ID).
-			Preload("Match", "status = ?", "FINISHED").Find(&hits).Error
-		//err := manager.DB.Where("is_hit = true AND from_user_id = ?", user.ID).Find(&hits).Error
+			Preload("Match", "status = ?", "FINISHED").Find(&predictions).Error
 		if err != nil {
 			panic(err)
 		}
-		for _, hit := range hits {
-			//	hit.Match = entity.Match{}
-			//	manager.DB.Model(hit).Related(&hit.Match)
-			//	manager.DB.Model(hit).Related(&hit.FromUser)
-			hit.FromUser = user
+		hits := []entity.Prediction{}
+		err = manager.DB.Where("is_hit = true AND from_user_id = ?", user.ID).
+			Preload("FromUser", "ID = ?", user.ID).
+			Preload("Match", "status = ?", "FINISHED").Find(&hits).Error
+		if err != nil {
+			panic(err)
 		}
-		classificationScore := entity.ClassificationScore{User: user, Hits: hits, TotalHits: len(hits)}
+		classificationScore := entity.ClassificationScore{User: user,
+			Predictions: predictions, Hits: hits, TotalHits: len(hits)}
 		classification.Scores = append(classification.Scores, classificationScore)
 	}
 	return &classification
