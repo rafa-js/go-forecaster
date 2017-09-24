@@ -36,6 +36,7 @@ func UpdateMatches() []entity.Match {
 	matchManager := manager.CreateMatchManager()
 	updatedMatches := []entity.Match{}
 	for _, jsonMatch := range apiResponse.Fixtures {
+		println("Updating match", jsonMatch)
 		match := createMatchFromJson(&jsonMatch)
 		if matchManager.AddOrUpdateMatch(match) {
 			updatedMatches = append(updatedMatches, *match)
