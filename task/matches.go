@@ -18,9 +18,13 @@ type JsonMatchResult struct {
 }
 
 type Links struct {
-	Competition string `json:"competition"`
-	HomeTeam    string `json:"homeTeam"`
-	AwayTeam    string `json:"awayTeam"`
+	Competition Link `json:"competition"`
+	HomeTeam    Link `json:"homeTeam"`
+	AwayTeam    Link `json:"awayTeam"`
+}
+
+type Link struct {
+	Href string `json:"href"`
 }
 
 type JsonMatch struct {
@@ -87,7 +91,7 @@ func createMatchFromJson(jsonMatch *JsonMatch) *entity.Match {
 	match := entity.Match{}
 	match.Date = jsonMatch.Date
 	match.MatchDay = jsonMatch.MatchDay
-	match.Competition = jsonMatch.Links.Competition
+	match.Competition = jsonMatch.Links.Competition.Href
 	match.Status = jsonMatch.Status
 	match.HomeTeamName = jsonMatch.HomeTeamName
 	match.AwayTeamName = jsonMatch.AwayTeamName
