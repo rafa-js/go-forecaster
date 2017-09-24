@@ -23,7 +23,7 @@ func wrap(handler func(writer http.ResponseWriter, request *http.Request)) func(
 
 func updateMatches() {
 	for {
-		<-time.After(20 * time.Minute)
+		<-time.After(20 * time.Second)
 		updatedMatches := task.UpdateMatches()
 		println("MATCHES UPDATED: Total matches updated:", len(updatedMatches))
 		for _, match := range updatedMatches {
