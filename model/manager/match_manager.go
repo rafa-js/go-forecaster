@@ -14,6 +14,12 @@ func (manager MatchManager) GetTimedMatches() []entity.Match {
 	return matches
 }
 
+func (manager MatchManager) GetByID(id uint) entity.Match {
+	match := entity.Match{}
+	manager.DB.Find(match, id)
+	return match
+}
+
 func (manager MatchManager) AddOrUpdateMatch(match *entity.Match) bool {
 	currentMatch := entity.Match{}
 	manager.DB.Where(entity.Match{Competition: match.Competition, MatchDay: match.MatchDay,

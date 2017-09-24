@@ -11,7 +11,6 @@ import (
 	"github.com/server-forecaster/model"
 	"time"
 	"github.com/server-forecaster/task"
-	"github.com/server-forecaster/model/manager"
 )
 
 func wrap(handler func(writer http.ResponseWriter, request *http.Request)) func(http.ResponseWriter, *http.Request) {
@@ -27,15 +26,20 @@ func updateMatches() {
 		<-time.After(1 * time.Minute)
 		updatedMatches := task.UpdateMatches()
 		println("MATCHES UPDATED - Total matches updated:", len(updatedMatches))
-		predictionManager := manager.CreatePredictionManager()
-		for _, match := range updatedMatches {
-			predictionManager.UpdatePredictionResults(match)
-		}
+	}
+}
+
+func updatePredictionResults() {
+	for {
+		<-time.After(10 * time.Minute)
+		task.UpdatePredictionResults()
+		println("PREDICTION RESULTS UPDATED")
 	}
 }
 
 func main() {
 	go updateMatches()
+	go updatePredictionResults()
 
 	port := os.Getenv("PORT")
 	if port == "" {

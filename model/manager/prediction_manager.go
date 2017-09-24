@@ -14,21 +14,20 @@ func (manager PredictionManager) GetByMatch(matchId uint) ([]entity.Prediction, 
 	return predictions, err
 }
 
-func (manager PredictionManager) UpdatePredictionResults(match entity.Match) {
+func (manager PredictionManager) GetPending() ([]entity.Prediction, error) {
+	predictions := []entity.Prediction{}
+	err := manager.DB.Where("is_pending = ?", true).Find(&predictions).Error
+	return predictions, err
+}
+
+func (manager PredictionManager) UpdatePredictionResults(prediction entity.Prediction, match entity.Match) {
 	if match.Status != "FINISHED" {
 		return
 	}
-	predictions := []entity.Prediction{}
-	err := manager.DB.Where("match_id = ? AND is_pending = true", match.ID).Find(&predictions).Error
-	if err != nil {
-		panic(err)
-	}
-	for _, prediction := range predictions {
-		isHit := prediction.AwayTeamGoals == match.AwayTeamGoals &&
-			prediction.HomeTeamGoals == match.HomeTeamGoals
-		manager.DB.Model(&prediction).Update("IsHit", isHit)
-		manager.DB.Model(&prediction).Update(map[string]interface{}{"IsHit": isHit, "IsPending": false})
-	}
+	isHit := prediction.AwayTeamGoals == match.AwayTeamGoals &&
+		prediction.HomeTeamGoals == match.HomeTeamGoals
+	manager.DB.Model(&prediction).Update("IsHit", isHit)
+	manager.DB.Model(&prediction).Update(map[string]interface{}{"IsHit": isHit, "IsPending": false})
 }
 
 func CreatePredictionManager() PredictionManager {
