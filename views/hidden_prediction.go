@@ -73,20 +73,21 @@ func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 		fromUser := GetUserByToken(util.GetAuthToken(request))
 		if fromUser == nil {
 			writer.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+		hiddenPredictionManager := manager.CreateHiddenPredictionManager()
+		hiddenPred := hiddenPredictionManager.GetHiddenPredictionByMatchAndUser(revealRequest.MatchId, fromUser.ID)
+		if hiddenPred == nil {
+			writer.WriteHeader(http.StatusNotFound)
+			return
+		}
+		err := hiddenPredictionManager.RevealPrediction(revealRequest.Secret, *hiddenPred)
+		if err == nil {
+			writer.WriteHeader(http.StatusCreated)
 		} else {
-			hiddenPredictionManager := manager.CreateHiddenPredictionManager()
-			hiddenPred := hiddenPredictionManager.GetHiddenPredictionByMatchAndUser(revealRequest.MatchId, fromUser.ID)
-			if hiddenPred == nil {
-				writer.WriteHeader(http.StatusNotFound)
-			}
-			err := hiddenPredictionManager.RevealPrediction(revealRequest.Secret, *hiddenPred)
-			if err == nil {
-				writer.WriteHeader(http.StatusCreated)
-			} else {
-				writer.WriteHeader(http.StatusBadRequest)
-				io.WriteString(writer, err.Error())
-				log.Panic(err)
-			}
+			writer.WriteHeader(http.StatusBadRequest)
+			io.WriteString(writer, err.Error())
+			log.Panic(err)
 		}
 	}
 }
