@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 	"strconv"
 	"io"
+	"log"
 )
 
 func AddHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
@@ -74,13 +75,17 @@ func RevealHiddenPrediction(writer http.ResponseWriter, request *http.Request) {
 			writer.WriteHeader(http.StatusUnauthorized)
 		} else {
 			hiddenPredictionManager := manager.CreateHiddenPredictionManager()
-			err := hiddenPredictionManager.RevealPrediction(revealRequest.Secret, revealRequest.MatchId, fromUser.ID)
+			hiddenPred := hiddenPredictionManager.GetHiddenPredictionByMatchAndUser(revealRequest.MatchId, fromUser.ID)
+			if hiddenPred == nil {
+				writer.WriteHeader(http.StatusNotFound)
+			}
+			err := hiddenPredictionManager.RevealPrediction(revealRequest.Secret, *hiddenPred)
 			if err == nil {
 				writer.WriteHeader(http.StatusCreated)
 			} else {
 				writer.WriteHeader(http.StatusBadRequest)
 				io.WriteString(writer, err.Error())
-				panic(err)
+				log.Panic(err)
 			}
 		}
 	}

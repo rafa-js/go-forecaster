@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0634168-ba2e-4d46-af4a-3e186bf738f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/db.go" afterPath="$PROJECT_DIR$/model/db.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/entity/prediction.go" afterPath="$PROJECT_DIR$/model/entity/prediction.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/manager/hidden_prediction_manager.go" afterPath="$PROJECT_DIR$/model/manager/hidden_prediction_manager.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/hidden_prediction.go" afterPath="$PROJECT_DIR$/views/hidden_prediction.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/views/hidden_prediction.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="76" column="88" lean-forward="false" selection-start-line="76" selection-start-column="88" selection-end-line="76" selection-end-column="88" />
+              <caret line="79" column="54" lean-forward="false" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -38,8 +38,8 @@
       <file leaf-file-name="hidden_prediction_manager.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+            <state relative-caret-position="262">
+              <caret line="42" column="4" lean-forward="false" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -101,7 +101,6 @@
         <option value="$PROJECT_DIR$/task/matches.go" />
         <option value="$PROJECT_DIR$/views/json.go" />
         <option value="$PROJECT_DIR$/model/manager/match_manager.go" />
-        <option value="$PROJECT_DIR$/model/entity/prediction.go" />
         <option value="$PROJECT_DIR$/model/entity/hidden_prediction.go" />
         <option value="$PROJECT_DIR$/model/manager/user_manager.go" />
         <option value="$PROJECT_DIR$/model/manager/authenticator_manager.go" />
@@ -114,9 +113,10 @@
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/model/manager/base_manager.go" />
         <option value="$PROJECT_DIR$/util/encryption.go" />
-        <option value="$PROJECT_DIR$/views/hidden_prediction.go" />
         <option value="$PROJECT_DIR$/model/db.go" />
+        <option value="$PROJECT_DIR$/model/entity/prediction.go" />
         <option value="$PROJECT_DIR$/model/manager/hidden_prediction_manager.go" />
+        <option value="$PROJECT_DIR$/views/hidden_prediction.go" />
       </list>
     </option>
   </component>
@@ -426,13 +426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/entity/prediction.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="44" lean-forward="false" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/entity/match.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -556,13 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/entity/hidden_prediction.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/go/1.9/libexec/src/strings/strings.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -624,14 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hidden_prediction.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="76" column="88" lean-forward="false" selection-start-line="76" selection-start-column="88" selection-end-line="76" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/db.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -640,10 +618,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/entity/prediction.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/entity/hidden_prediction.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hidden_prediction.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="79" column="54" lean-forward="false" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/manager/hidden_prediction_manager.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+        <state relative-caret-position="262">
+          <caret line="42" column="4" lean-forward="false" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
           <folding />
         </state>
       </provider>

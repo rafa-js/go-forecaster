@@ -30,13 +30,16 @@ func (manager HiddenPredictionManager) UpdatePrediction(id int, hiddenPrediction
 	}
 }
 
-func (manager HiddenPredictionManager) RevealPrediction(secret string, matchId uint, userId uint) error {
+func (manager HiddenPredictionManager) GetHiddenPredictionByMatchAndUser(matchId uint, userId uint) *entity.HiddenPrediction {
 	hiddenPrediction := entity.HiddenPrediction{}
-	println("From User: ", userId, " and match ID ", matchId)
-	err := manager.DB.Debug().Where("from_user_id = ? AND match_id = ?", userId, matchId).First(&hiddenPrediction).Error
-	if err != nil {
-		return err
+	result := manager.DB.Where("from_user_id = ? AND match_id = ?", userId, matchId).First(&hiddenPrediction)
+	if result.RecordNotFound() {
+		return nil
 	}
+	return &hiddenPrediction
+}
+
+func (manager HiddenPredictionManager) RevealPrediction(secret string, hiddenPrediction entity.HiddenPrediction) error {
 	homeTeamGoals, awayTeamGoals, err := getPredictedGoals(hiddenPrediction.CypheredPrediction, secret)
 	if err != nil {
 		return err
